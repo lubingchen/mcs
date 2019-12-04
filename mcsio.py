@@ -6,8 +6,8 @@ import Adafruit_DHT
 import http.client as http
 import urllib
 import json
-deviceId = "D02AQ710";
-deviceKey = "814TEt4R9Gf2GlMY";
+deviceId = "DCX6mAuY";
+deviceKey = "H7S91OxR0nxwW00t";
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(24,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 def post_to_mcs(payload):
@@ -20,7 +20,7 @@ def post_to_mcs(payload):
 			not_connected = 0
 		except (http.HTTPException, socket.error) as ex:
 			print ("Error: %s" % ex)
-			time.sleep(10)
+			time.sleep(1)
 # sleep 10 seconds
 
 		conn.request("POST", "/mcs/v2/devices/" + deviceId + "/datapoints",
@@ -61,4 +61,4 @@ while True:
 	payload ={"datapoints":[{"dataChnId":"SwitchStatus","values":{"value":SwitchStatus}},
 {"dataChnId":"SwitchStatus2","values":{"value":SwitchStatus}}]}
 	post_to_mcs(payload)
-	time.sleep(10)
+	time.sleep(1)
